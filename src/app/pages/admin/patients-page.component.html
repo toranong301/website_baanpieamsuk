@@ -1,0 +1,133 @@
+<section class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+  <div>
+    <h2 class="h5 fw-bold mb-1">ข้อมูลผู้เข้ารับการรักษา</h2>
+    <p class="mb-0 text-secondary small">หน้ารายการทั้งหมด และหน้าฟอร์มเพิ่ม/แก้ไขข้อมูล</p>
+  </div>
+  <div class="btn-group btn-group-sm">
+    <button
+      class="btn"
+      [class.btn-primary]="mode() === 'list'"
+      [class.btn-outline-primary]="mode() !== 'list'"
+      (click)="setMode('list')"
+      type="button"
+    >
+      หน้ารายการทั้งหมด
+    </button>
+    <button
+      class="btn"
+      [class.btn-primary]="mode() === 'form'"
+      [class.btn-outline-primary]="mode() !== 'form'"
+      (click)="setMode('form')"
+      type="button"
+    >
+      เพิ่ม / แก้ไขข้อมูล
+    </button>
+  </div>
+</section>
+
+@if (mode() === 'list') {
+  <section class="card border-0 shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table align-middle table-hover mb-0">
+          <thead>
+            <tr>
+              <th>รหัสเคส</th>
+              <th>ชื่อ-นามสกุล</th>
+              <th>อายุ</th>
+              <th>เบอร์โทร</th>
+              <th>สาขา</th>
+              <th>สถานะ</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (patient of patients(); track patient.id) {
+              <tr>
+                <td>{{ patient.caseCode }}</td>
+                <td>
+                  <p class="mb-0 fw-semibold">{{ patient.fullName }}</p>
+                  <span class="small text-secondary">{{ patient.gender }}</span>
+                </td>
+                <td>{{ ageFromBirthdate(patient.birthDate) }} ปี</td>
+                <td>{{ patient.phone }}</td>
+                <td>{{ adminDataService.branchName(patient.branchId) }}</td>
+                <td>
+                  <span class="badge" [class]="statusClass(patient.status)">
+                    {{ adminDataService.statusLabel(patient.status) }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="card border-0 shadow-sm">
+    <div class="card-body">
+      <h3 class="h6 fw-bold">ฟอร์มประวัติพื้นฐานผู้เข้ารับการรักษา</h3>
+      <div class="row g-2">
+        <div class="col-md-4">
+          <label class="form-label">เลขประจำตัวผู้ป่วย / รหัสเคส</label>
+          <input type="text" class="form-control" placeholder="เช่น BPS-2026-0099" />
+        </div>
+        <div class="col-md-8">
+          <label class="form-label">ชื่อ-นามสกุล</label>
+          <input type="text" class="form-control" placeholder="ชื่อผู้เข้ารับการรักษา" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">วันเกิด</label>
+          <input type="date" class="form-control" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">เพศ</label>
+          <select class="form-select">
+            <option>ชาย</option>
+            <option>หญิง</option>
+            <option>อื่น ๆ</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">เบอร์โทร</label>
+          <input type="tel" class="form-control" placeholder="0xx-xxx-xxxx" />
+        </div>
+        <div class="col-md-8">
+          <label class="form-label">ที่อยู่</label>
+          <input type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">ผู้ติดต่อฉุกเฉิน</label>
+          <input type="text" class="form-control" placeholder="ชื่อและเบอร์ติดต่อ" />
+        </div>
+        <div class="col-md-8">
+          <label class="form-label">ประวัติสารเสพติดเบื้องต้น</label>
+          <textarea class="form-control" rows="2" placeholder="ประเภทสาร / ระยะเวลา / ความถี่"></textarea>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">สาขาที่รับผิดชอบ</label>
+          <select class="form-select">
+            @for (branch of branches(); track branch.id) {
+              <option [value]="branch.id">{{ branch.name }}</option>
+            }
+          </select>
+          @if (role() === 'staff') {
+            <p class="small text-secondary mt-1 mb-0">แอดมินลูกจ้างผูกกับ 1 สาขา</p>
+          }
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">สถานะปัจจุบัน</label>
+          <select class="form-select">
+            <option>คัดกรอง</option>
+            <option>รักษาอยู่</option>
+            <option>ติดตามอาการ</option>
+            <option>สิ้นสุดการรักษา</option>
+          </select>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <button type="button" class="btn btn-primary w-100">บันทึกข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </section>
+}

@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* CI Palette - Primary */
+  --ci-primary-1: #182455;
+  --ci-primary-2: #464451;
+  --ci-primary-3: #c29e55;
+  --ci-primary-4: #8d7c62;
+  --ci-primary-5: #ceb16b;
+
+  /* CI Palette - Secondary / Background */
+  --ci-bg-1: #bfc8ed;
+  --ci-bg-2: #d4d3da;
+  --ci-bg-3: #b4a891;
+  --ci-bg-4: #ded8cf;
+  --ci-bg-5: #ebdec2;
+
+  /* Text */
+  --ci-header-text: #182455;
+  --ci-subheader-text: #bfc8ed;
+  --ci-paragraph-text: #464451;
+
+  /* Main website tone */
+  --ci-main-primary: #182455;
+  --ci-main-white: #ffffff;
+  --ci-main-accent: #c29e55;
+
+  /* Bootstrap theme bridge */
+  --bs-primary: var(--ci-main-primary);
+  --bs-primary-rgb: 24, 36, 85;
+  --bs-secondary: var(--ci-paragraph-text);
+  --bs-secondary-rgb: 70, 68, 81;
+  --bs-warning: var(--ci-main-accent);
+  --bs-warning-rgb: 194, 158, 85;
+  --bs-light: var(--ci-bg-4);
+  --bs-light-rgb: 222, 216, 207;
+  --bs-body-bg: var(--ci-main-white);
+  --bs-body-color: var(--ci-paragraph-text);
+  --bs-border-color: var(--ci-bg-2);
+  --bs-link-color: var(--ci-main-primary);
+  --bs-link-hover-color: var(--ci-main-accent);
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  padding: 0;
+}
+
+body {
+  background: var(--ci-main-white);
+  color: var(--ci-paragraph-text);
+  font-family: 'Noto Sans Thai', sans-serif;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--ci-header-text);
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: var(--ci-paragraph-text);
+}
+
+.ci-header-text {
+  color: var(--ci-header-text) !important;
+}
+
+.ci-subheader-text {
+  color: var(--ci-subheader-text) !important;
+}
+
+.ci-paragraph-text {
+  color: var(--ci-paragraph-text) !important;
+}
+
+.card {
+  border-radius: 0.85rem;
+}

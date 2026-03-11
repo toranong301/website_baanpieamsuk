@@ -1,0 +1,134 @@
+<section class="row g-3 mb-3">
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <p class="text-secondary small mb-1">ผู้เข้ารับการรักษาปัจจุบัน</p>
+        <p class="display-6 fw-bold mb-0">{{ summary().activePatientCount }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <p class="text-secondary small mb-1">นัดหมายวันนี้</p>
+        <p class="display-6 fw-bold mb-0">{{ summary().todaysAppointmentCount }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <p class="text-secondary small mb-1">รายการค้างชำระ</p>
+        <p class="display-6 fw-bold mb-0">{{ summary().overduePaymentCount }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <p class="text-secondary small mb-1">เคสที่ต้องติดตาม</p>
+        <p class="display-6 fw-bold mb-0">{{ summary().followUpCases }}</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="row g-3 mb-3">
+  @if (role() === 'owner') {
+    <div class="col-lg-6">
+      <article class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h2 class="h6 fw-bold">ภาพรวมการเงินทุกสาขา</h2>
+          <p class="mb-2 text-secondary">รายได้จากรายการชำระแล้ว</p>
+          <p class="h3 fw-bold text-success mb-3">{{ summary().revenueAmount | number }} บาท</p>
+          <p class="mb-2 text-secondary">ยอดที่ยังต้องติดตามชำระ</p>
+          <p class="h4 fw-bold text-danger mb-0">{{ summary().pendingPaymentAmount | number }} บาท</p>
+        </div>
+      </article>
+    </div>
+    <div class="col-lg-6">
+      <article class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h2 class="h6 fw-bold">ภาพรวมรายสาขา</h2>
+          <div class="table-responsive">
+            <table class="table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>สาขา</th>
+                  <th>ผู้เข้ารับการรักษา</th>
+                  <th>นัดหมาย</th>
+                  <th>ค้างชำระ</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (branch of branchOverview(); track branch.name) {
+                  <tr>
+                    <td>{{ branch.name }}</td>
+                    <td>{{ branch.patientCount }}</td>
+                    <td>{{ branch.appointmentCount }}</td>
+                    <td>{{ branch.overduePayments }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    </div>
+  } @else {
+    <div class="col-12">
+      <article class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h2 class="h6 fw-bold">สรุปค่าใช้จ่ายสาขา</h2>
+          <p class="mb-1 text-secondary">ยอดที่ต้องติดตามชำระในสาขาปัจจุบัน</p>
+          <p class="h3 fw-bold text-danger mb-0">{{ summary().pendingPaymentAmount | number }} บาท</p>
+        </div>
+      </article>
+    </div>
+  }
+</section>
+
+<section class="row g-3">
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">สถานะการรักษา</h2>
+        @for (item of treatmentStatus(); track item.label) {
+          <div class="mb-2">
+            <div class="d-flex justify-content-between small">
+              <span>{{ item.label }}</span>
+              <span>{{ item.count }} เคส</span>
+            </div>
+            <div class="progress" role="progressbar" aria-label="status">
+              <div class="progress-bar" [style.width.%]="item.count * 20"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </article>
+  </div>
+
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">แจ้งเตือนล่าสุด</h2>
+        <div class="list-group list-group-flush">
+          @for (notification of summary().latestNotifications; track notification.id) {
+            <div class="list-group-item px-0">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <div>
+                  <p class="fw-semibold mb-1">{{ notification.type }}</p>
+                  <p class="small text-secondary mb-1">{{ notification.message }}</p>
+                  <span class="small text-secondary">
+                    {{ notification.channel | uppercase }} · {{ notification.receiver }}
+                  </span>
+                </div>
+                <span class="badge text-bg-light">{{ notification.status }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

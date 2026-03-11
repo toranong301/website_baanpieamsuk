@@ -1,0 +1,103 @@
+<section class="mb-3">
+  <h2 class="h5 fw-bold mb-1">จัดการผู้ใช้งาน</h2>
+  <p class="small text-secondary mb-0">สร้างบัญชีแอดมิน กำหนดบทบาท และผูกสาขา</p>
+</section>
+
+<section class="row g-3">
+  <div class="col-lg-7">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">รายการบัญชีผู้ใช้งาน</h3>
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr>
+                <th>ชื่อผู้ใช้งาน</th>
+                <th>อีเมล</th>
+                <th>เบอร์โทร</th>
+                <th>บทบาท</th>
+                <th>สาขา</th>
+                <th>สถานะ</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of users(); track user.id) {
+                <tr>
+                  <td>{{ user.fullName }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phone }}</td>
+                  <td>
+                    @if (user.role === 'owner') {
+                      <span class="badge text-bg-primary">แอดมินเจ้าของ</span>
+                    } @else {
+                      <span class="badge text-bg-secondary">แอดมินลูกจ้าง</span>
+                    }
+                  </td>
+                  <td>
+                    @if (user.branchId) {
+                      {{ adminDataService.branchName(user.branchId) }}
+                    } @else {
+                      ทุกสาขา
+                    }
+                  </td>
+                  <td>
+                    @if (user.active) {
+                      <span class="badge text-bg-success">ใช้งาน</span>
+                    } @else {
+                      <span class="badge text-bg-danger">ปิดใช้งาน</span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="col-lg-5">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">เพิ่มบัญชีแอดมิน</h3>
+        <div class="row g-2">
+          <div class="col-12">
+            <label class="form-label">ชื่อผู้ใช้งาน</label>
+            <input class="form-control" type="text" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">อีเมล</label>
+            <input class="form-control" type="email" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">เบอร์โทร</label>
+            <input class="form-control" type="tel" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">บทบาท</label>
+            <select class="form-select">
+              <option>แอดมินลูกจ้าง</option>
+              <option>แอดมินเจ้าของ</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label">สาขาที่สังกัด</label>
+            <select class="form-select">
+              @for (branch of branches; track branch.id) {
+                <option [value]="branch.id">{{ branch.name }}</option>
+              }
+            </select>
+            @if (role() === 'staff') {
+              <p class="small text-secondary mt-1 mb-0">
+                โหมดลูกจ้างสามารถมองเห็นเฉพาะข้อมูลผู้ใช้งานที่เกี่ยวข้องกับสาขาตัวเอง
+              </p>
+            }
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-primary w-100">บันทึกบัญชีผู้ใช้งาน</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+<div class="admin-shell">
+  <aside class="sidebar border-end">
+    <div class="p-3 border-bottom">
+      <div class="system-brand d-flex align-items-center gap-2 mb-2">
+        <img class="system-brand-logo" src="assets/icons/logo.ico" alt="บ้านเปี่ยมสุข" />
+        <div>
+          <p class="small text-uppercase fw-semibold mb-0 text-primary">Baan Pieam Suk</p>
+          <h2 class="h6 mb-0 fw-bold">บ้านเปี่ยมสุข</h2>
+        </div>
+      </div>
+      <h3 class="h6 mb-1 fw-bold">Admin System</h3>
+      <p class="small mb-0 text-secondary">
+        @if (isOwner()) {
+          เจ้าของระบบ: เข้าถึงข้อมูลทุกสาขา
+        } @else {
+          แอดมินลูกจ้าง: เห็นข้อมูลเฉพาะสาขา
+        }
+      </p>
+    </div>
+
+    <nav class="nav flex-column p-2">
+      @for (item of menuItems; track item.route) {
+        @if (!item.ownerOnly || isOwner()) {
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            class="nav-link rounded-3 px-3 py-2 fw-semibold"
+          >
+            {{ item.label }}
+          </a>
+        }
+      }
+    </nav>
+
+    <div class="mt-auto p-3 border-top">
+      <a [routerLink]="['/']" class="btn btn-outline-secondary w-100">กลับหน้า Landing</a>
+    </div>
+  </aside>
+
+  <div class="main-panel">
+    <header class="toolbar border-bottom px-3 py-3">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div>
+          <h1 class="h4 mb-1 fw-bold">ระบบจัดการศูนย์ฟื้นฟูผู้ติดยาเสพติด</h1>
+          <p class="mb-0 text-secondary small">
+            @if (isOwner()) {
+              กำลังดูข้อมูลภาพรวมทุกสาขา
+            } @else {
+              สาขาที่ใช้งาน: {{ currentBranchName() }}
+            }
+          </p>
+        </div>
+
+        <div class="d-flex align-items-center flex-wrap gap-2">
+          <div class="btn-group btn-group-sm">
+            <button
+              type="button"
+              class="btn"
+              [class.btn-primary]="role() === 'owner'"
+              [class.btn-outline-primary]="role() !== 'owner'"
+              (click)="setRole('owner')"
+            >
+              โหมดเจ้าของ
+            </button>
+            <button
+              type="button"
+              class="btn"
+              [class.btn-primary]="role() === 'staff'"
+              [class.btn-outline-primary]="role() !== 'staff'"
+              (click)="setRole('staff')"
+            >
+              โหมดลูกจ้าง
+            </button>
+          </div>
+
+          <select class="form-select form-select-sm" [value]="branchId()" (change)="setBranch($event)">
+            @for (branch of branches; track branch.id) {
+              <option [value]="branch.id">{{ branch.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content p-3">
+      <router-outlet />
+    </main>
+  </div>
+</div>

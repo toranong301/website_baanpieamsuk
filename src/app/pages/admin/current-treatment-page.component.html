@@ -1,0 +1,57 @@
+<section class="mb-3">
+  <h2 class="h5 fw-bold mb-1">แผนการรักษาปัจจุบัน</h2>
+  <p class="small text-secondary mb-0">
+    หน้าสำหรับบันทึกสถานะปัจจุบันของผู้เข้ารับการรักษา ออกแบบให้กรอกข้อมูลได้รวดเร็ว
+  </p>
+</section>
+
+<section class="row g-3">
+  @for (row of treatmentRows(); track row.patient.id) {
+    <div class="col-12">
+      <article class="card border-0 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between gap-2 mb-2">
+            <div>
+              <h3 class="h6 fw-bold mb-0">{{ row.patient.fullName }}</h3>
+              <p class="small text-secondary mb-0">{{ row.patient.caseCode }}</p>
+            </div>
+            <span class="badge text-bg-light">{{ adminDataService.branchName(row.patient.branchId) }}</span>
+          </div>
+          <div class="row g-2">
+            <div class="col-md-3">
+              <label class="form-label">สถานะปัจจุบัน</label>
+              <input class="form-control" [value]="row.plan?.status" />
+            </div>
+            <div class="col-md-5">
+              <label class="form-label">โปรแกรมที่อยู่ระหว่างการรักษา</label>
+              <input class="form-control" [value]="row.plan?.activeProgram" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">ผู้ดูแลหลัก</label>
+              <input class="form-control" [value]="row.plan?.primaryCaretaker" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">วันที่นัดครั้งถัดไป</label>
+              <input class="form-control" type="date" [value]="row.plan?.nextAppointmentDate" />
+            </div>
+            <div class="col-md-5">
+              <label class="form-label">อาการล่าสุด</label>
+              <input class="form-control" [value]="row.plan?.latestSymptoms" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">เอกสารล่าสุด</label>
+              <input class="form-control" [value]="row.plan?.latestDocument" />
+            </div>
+            <div class="col-md-9">
+              <label class="form-label">หมายเหตุจากเจ้าหน้าที่</label>
+              <textarea rows="2" class="form-control">{{ row.plan?.latestNote }}</textarea>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+              <button type="button" class="btn btn-primary w-100">บันทึกอัปเดต</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  }
+</section>

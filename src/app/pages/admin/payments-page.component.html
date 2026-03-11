@@ -1,0 +1,76 @@
+<section class="mb-3">
+  <h2 class="h5 fw-bold mb-1">ค่าใช้จ่าย / การชำระเงิน</h2>
+  <p class="small text-secondary mb-0">ติดตามค่ารักษา สถานะชำระเงิน และหลักฐานการชำระ</p>
+</section>
+
+<section class="row g-3 mb-3">
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">ยังไม่ถึงกำหนด</p>
+        <p class="h4 mb-0 fw-bold">{{ paymentSummary().notDue }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">ใกล้ครบกำหนด</p>
+        <p class="h4 mb-0 fw-bold text-warning">{{ paymentSummary().dueSoon }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">ค้างชำระ</p>
+        <p class="h4 mb-0 fw-bold text-danger">{{ paymentSummary().overdue }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">ชำระแล้ว</p>
+        <p class="h4 mb-0 fw-bold text-success">{{ paymentSummary().paid }}</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="card border-0 shadow-sm">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th>รายการค่ารักษา</th>
+            <th>ผู้เข้ารับการรักษา</th>
+            <th>ยอดรวม</th>
+            <th>วันครบกำหนด</th>
+            <th>สถานะ</th>
+            <th>หลักฐานการชำระ</th>
+            <th>หมายเหตุ</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (payment of payments(); track payment.id) {
+            <tr>
+              <td>{{ payment.itemName }}</td>
+              <td>{{ adminDataService.patientName(payment.patientId) }}</td>
+              <td>{{ payment.amount | number }} บาท</td>
+              <td>{{ payment.dueDate | date: 'dd/MM/yyyy' }}</td>
+              <td>
+                <span class="badge" [class]="adminDataService.paymentStatusBadgeClass(payment.status)">
+                  {{ adminDataService.paymentStatusLabel(payment.status) }}
+                </span>
+              </td>
+              <td>{{ payment.paymentProof }}</td>
+              <td>{{ payment.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

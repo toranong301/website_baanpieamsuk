@@ -1,0 +1,123 @@
+<section class="mb-3">
+  <h2 class="h5 fw-bold mb-1">นัดหมายและแจ้งเตือน</h2>
+  <p class="small text-secondary mb-0">
+    จัดการนัดหมาย การแจ้งเตือน และประวัติการส่งแจ้งเตือนผ่าน Email / Line
+  </p>
+</section>
+
+<section class="card border-0 shadow-sm mb-3">
+  <div class="card-body">
+    <h3 class="h6 fw-bold">ตั้งค่าแจ้งเตือน</h3>
+    <div class="row g-2">
+      <div class="col-md-4">
+        <label class="form-label">ผู้เข้ารับการรักษา</label>
+        <select class="form-select">
+          @for (patient of patients(); track patient.id) {
+            <option [value]="patient.id">{{ patient.caseCode }} - {{ patient.fullName }}</option>
+          }
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">ประเภทการแจ้งเตือน</label>
+        <select class="form-select">
+          <option>นัดหมายพบแพทย์/นักบำบัด</option>
+          <option>กำหนดชำระค่ารักษา</option>
+          <option>วันติดตามผล</option>
+          <option>ครบกำหนดประเมินซ้ำ</option>
+          <option>เอกสารไม่ครบ</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">วันที่แจ้งเตือน</label>
+        <input type="date" class="form-control" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">ผู้รับแจ้งเตือน</label>
+        <input type="text" class="form-control" placeholder="ผู้ป่วย/ญาติ/ผู้ดูแล" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">ช่องทาง</label>
+        <select class="form-select">
+          <option>Email</option>
+          <option>Line</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">รูปแบบการส่ง</label>
+        <select class="form-select">
+          <option>ส่งอัตโนมัติ</option>
+          <option>ส่งเอง</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">ข้อความ</label>
+        <input type="text" class="form-control" placeholder="ข้อความแจ้งเตือน" />
+      </div>
+      <div class="col-md-12 d-flex justify-content-end">
+        <button type="button" class="btn btn-primary">บันทึกและส่งแจ้งเตือน</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="row g-3">
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">รายการนัดหมาย</h3>
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr>
+                <th>วันที่</th>
+                <th>ผู้เข้ารับการรักษา</th>
+                <th>ประเภท</th>
+                <th>สถานะ</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of appointments(); track item.id) {
+                <tr>
+                  <td>{{ item.date | date: 'dd/MM/yyyy' }}</td>
+                  <td>{{ adminDataService.patientName(item.patientId) }}</td>
+                  <td>{{ item.type }}</td>
+                  <td><span class="badge text-bg-light">{{ item.status }}</span></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">ประวัติการส่งแจ้งเตือน</h3>
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr>
+                <th>เวลา</th>
+                <th>ประเภท</th>
+                <th>ผู้รับ</th>
+                <th>ผลลัพธ์</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of notifications(); track item.id) {
+                <tr>
+                  <td>{{ item.sentAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.receiver }}</td>
+                  <td><span class="badge text-bg-light">{{ item.status }}</span></td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

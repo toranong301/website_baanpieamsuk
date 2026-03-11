@@ -1,0 +1,98 @@
+<section class="mb-3">
+  <h2 class="h5 fw-bold mb-1">จัดการสาขา</h2>
+  <p class="small text-secondary mb-0">เพิ่ม แก้ไข เปิด/ปิดการใช้งาน และดูจำนวนผู้ป่วยแต่ละสาขา</p>
+</section>
+
+<section class="row g-3">
+  <div class="col-lg-8">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">รายการสาขา</h3>
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead>
+              <tr>
+                <th>รหัสสาขา</th>
+                <th>ชื่อสาขา</th>
+                <th>ผู้ดูแลสาขา</th>
+                <th>เบอร์โทร</th>
+                <th>ผู้ป่วยในสาขา</th>
+                <th>สถานะ</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (branch of branches; track branch.id) {
+                <tr>
+                  <td>{{ branch.code }}</td>
+                  <td>
+                    <p class="fw-semibold mb-0">{{ branch.name }}</p>
+                    <span class="small text-secondary">{{ branch.address }}</span>
+                  </td>
+                  <td>{{ branch.managerName }}</td>
+                  <td>{{ branch.phone }}</td>
+                  <td>{{ adminDataService.branchPatientCount(branch.id) }}</td>
+                  <td>
+                    @if (isActive(branch.id)) {
+                      <span class="badge text-bg-success">เปิดใช้งาน</span>
+                    } @else {
+                      <span class="badge text-bg-secondary">ปิดใช้งาน</span>
+                    }
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-sm"
+                      [class.btn-outline-danger]="isActive(branch.id)"
+                      [class.btn-outline-success]="!isActive(branch.id)"
+                      (click)="toggleBranch(branch.id)"
+                    >
+                      @if (isActive(branch.id)) { ปิดการใช้งาน } @else { เปิดการใช้งาน }
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="col-lg-4">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">เพิ่ม / แก้ไขสาขา</h3>
+        <div class="row g-2">
+          <div class="col-12">
+            <label class="form-label">ชื่อสาขา</label>
+            <input class="form-control" type="text" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">รหัสสาขา</label>
+            <input class="form-control" type="text" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">ที่อยู่</label>
+            <textarea class="form-control" rows="2"></textarea>
+          </div>
+          <div class="col-12">
+            <label class="form-label">เบอร์โทร</label>
+            <input class="form-control" type="tel" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">อีเมล</label>
+            <input class="form-control" type="email" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">ผู้ดูแลสาขา</label>
+            <input class="form-control" type="text" />
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-primary w-100">บันทึกข้อมูลสาขา</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

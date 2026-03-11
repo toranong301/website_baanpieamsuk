@@ -2,6 +2,19 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
 
+## CI Baseline (Corporate Identity)
+
+Use this palette as the default foundation for this website.
+
+- Main tone: `#182455` `#FFFFFF` `#c29e55`
+- Primary colors: `#182455` `#464451` `#c29e55` `#8d7c62` `#ceb16b`
+- Secondary/background colors: `#bfc8ed` `#D4D3DA` `#b4a891` `#DED8CF` `#EBDEC2`
+- Header text: `#182455`
+- Sub header text: `#bfc8ed`
+- Paragraph text: `#464451`
+
+Theme tokens are centralized in `src/styles.scss` (`:root` CSS variables).
+
 ## Development server
 
 To start a local development server, run:

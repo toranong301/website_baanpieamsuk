@@ -1,0 +1,98 @@
+<section class="mb-3">
+  <h2 class="h5 fw-bold mb-1">รายงาน</h2>
+  <p class="small text-secondary mb-0">
+    สรุปภาพรวมสำหรับผู้บริหาร: ผู้เข้ารับการรักษา สถานะการรักษา นัดหมาย และค้างชำระ
+  </p>
+</section>
+
+<section class="row g-3 mb-3">
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">จำนวนผู้เข้ารับการรักษา</p>
+        <p class="h4 fw-bold mb-0">{{ reportSummary().totalPatients }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">เคสใหม่รายเดือน</p>
+        <p class="h4 fw-bold mb-0">{{ reportSummary().newCasesThisMonth }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">รายการนัดหมายคงค้าง</p>
+        <p class="h4 fw-bold text-warning mb-0">{{ reportSummary().appointmentPending }}</p>
+      </div>
+    </article>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <article class="card border-0 shadow-sm">
+      <div class="card-body">
+        <p class="small text-secondary mb-1">รายการค้างชำระ</p>
+        <p class="h4 fw-bold text-danger mb-0">{{ reportSummary().overduePayments }}</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="row g-3 mb-3">
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">รายงานสถานะการรักษา</h3>
+        @for (item of treatmentStatus(); track item.label) {
+          <div class="d-flex justify-content-between py-1 border-bottom">
+            <span>{{ item.label }}</span>
+            <span class="fw-semibold">{{ item.count }} เคส</span>
+          </div>
+        }
+      </div>
+    </article>
+  </div>
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">รายงานผลการติดตาม</h3>
+        <p class="display-6 fw-bold mb-1">{{ reportSummary().followUpCases }}</p>
+        <p class="text-secondary mb-0">
+          เคสที่อยู่ในสถานะติดตามอาการ และต้องมีการแจ้งเตือนต่อเนื่อง
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+@if (role() === 'owner') {
+  <section class="card border-0 shadow-sm">
+    <div class="card-body">
+      <h3 class="h6 fw-bold">รายงานแยกตามสาขา</h3>
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>สาขา</th>
+              <th>ผู้เข้ารับการรักษา</th>
+              <th>เคสใหม่เดือนนี้</th>
+              <th>รายการค้างชำระ</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of branchRows(); track row.name) {
+              <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.patientCount }}</td>
+                <td>{{ row.newCases }}</td>
+                <td>{{ row.overduePayments }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+}

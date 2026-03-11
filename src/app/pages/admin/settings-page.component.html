@@ -1,0 +1,109 @@
+<section class="mb-3">
+  <h2 class="h5 fw-bold mb-1">ตั้งค่าระบบ</h2>
+  <p class="small text-secondary mb-0">ตั้งค่าพื้นฐานของระบบ แจ้งเตือน ความปลอดภัย และข้อมูลองค์กร</p>
+</section>
+
+<section class="row g-3">
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">ตั้งค่าการแจ้งเตือน</h3>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" checked />
+          <label class="form-check-label">เปิดใช้งานแจ้งเตือนทางอีเมล</label>
+        </div>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" checked />
+          <label class="form-check-label">เปิดใช้งานแจ้งเตือนผ่าน Line</label>
+        </div>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" />
+          <label class="form-check-label">ส่งแจ้งเตือนซ้ำกรณีไม่เปิดอ่าน</label>
+        </div>
+        <div class="mt-3">
+          <label class="form-label">รอบเวลาส่งแจ้งเตือนอัตโนมัติ</label>
+          <select class="form-select">
+            <option>ก่อนนัดหมาย 24 ชั่วโมง</option>
+            <option>ก่อนนัดหมาย 48 ชั่วโมง</option>
+            <option>ปรับแต่งเอง</option>
+          </select>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">ตั้งค่าข้อมูลศูนย์</h3>
+        <div class="mb-2">
+          <label class="form-label">ชื่อองค์กร</label>
+          <input class="form-control" value="ศูนย์ฟื้นฟูผู้ติดยาเสพติด บ้านเปี่ยมสุข" />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">เบอร์โทรกลาง</label>
+          <input class="form-control" value="02-210-9001" />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">อีเมลกลาง</label>
+          <input class="form-control" value="contact@baanpieamsuk.com" />
+        </div>
+        <div class="mb-0">
+          <label class="form-label">ข้อความลายเซ็นในแจ้งเตือน</label>
+          <textarea class="form-control" rows="3">ศูนย์ฟื้นฟูบ้านเปี่ยมสุข ขอขอบคุณที่ไว้วางใจ</textarea>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h3 class="h6 fw-bold">ความปลอดภัย</h3>
+        <div class="mb-2">
+          <label class="form-label">นโยบายหมดอายุรหัสผ่าน</label>
+          <select class="form-select">
+            <option>ทุก 90 วัน</option>
+            <option>ทุก 120 วัน</option>
+            <option>ไม่บังคับ</option>
+          </select>
+        </div>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" checked />
+          <label class="form-check-label">เปิดใช้งานบันทึกประวัติการใช้งานระบบ</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" checked />
+          <label class="form-check-label">บังคับยืนยันตัวตน 2 ขั้นตอนสำหรับแอดมินเจ้าของ</label>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="col-lg-6">
+    <article class="card border-0 shadow-sm h-100">
+      <div class="card-body d-flex flex-column">
+        <h3 class="h6 fw-bold">การบันทึกข้อมูลและสำรองข้อมูล</h3>
+        <div class="mb-2">
+          <label class="form-label">สำรองข้อมูลอัตโนมัติ</label>
+          <select class="form-select">
+            <option>ทุกวัน เวลา 02:00</option>
+            <option>ทุกสัปดาห์</option>
+            <option>ทุกเดือน</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">ระยะเวลาเก็บประวัติเอกสารแนบ</label>
+          <select class="form-select">
+            <option>5 ปี</option>
+            <option>7 ปี</option>
+            <option>10 ปี</option>
+          </select>
+        </div>
+        <div class="mt-auto">
+          <button type="button" class="btn btn-primary w-100">บันทึกการตั้งค่าระบบ</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

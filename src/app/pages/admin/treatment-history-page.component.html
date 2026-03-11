@@ -1,0 +1,55 @@
+<section class="card border-0 shadow-sm mb-3">
+  <div class="card-body">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-6">
+        <h2 class="h5 fw-bold mb-1">ประวัติการรักษา</h2>
+        <p class="mb-0 text-secondary small">แสดง Timeline รายเคส และแบ่งตามรอบการรักษา</p>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">เลือกผู้เข้ารับการรักษา</label>
+        <select class="form-select" [value]="selectedPatientId()" (change)="setPatient($event)">
+          @for (patient of patients(); track patient.id) {
+            <option [value]="patient.id">{{ patient.caseCode }} - {{ patient.fullName }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+@if (selectedPatient()) {
+  <section class="card border-0 shadow-sm">
+    <div class="card-body">
+      <h3 class="h6 fw-bold mb-3">Timeline การรักษา: {{ selectedPatient()?.fullName }}</h3>
+
+      @if (histories().length === 0) {
+        <div class="alert alert-secondary mb-0">ยังไม่มีข้อมูลประวัติการรักษาของเคสนี้</div>
+      } @else {
+        <div class="timeline">
+          @for (history of histories(); track history.id) {
+            <article class="timeline-item position-relative ps-4 pb-4">
+              <span class="timeline-dot"></span>
+              <div class="border rounded-3 p-3 bg-white">
+                <div class="d-flex justify-content-between flex-wrap gap-2 mb-2">
+                  <p class="fw-semibold mb-0">รอบการรักษาเริ่ม {{ history.startDate | date: 'dd/MM/yyyy' }}</p>
+                  <button type="button" class="btn btn-sm btn-outline-primary">
+                    ดูเอกสารแนบ: {{ history.attachmentLabel }}
+                  </button>
+                </div>
+                <p class="mb-1"><span class="fw-semibold">ประวัติการประเมิน:</span> {{ history.assessment }}</p>
+                <p class="mb-1"><span class="fw-semibold">ผลการวินิจฉัย:</span> {{ history.diagnosis }}</p>
+                <p class="mb-1"><span class="fw-semibold">แผนการรักษา:</span> {{ history.phasePlan }}</p>
+                <p class="mb-1"><span class="fw-semibold">ประวัติคำปรึกษา:</span> {{ history.consultationHistory }}</p>
+                <p class="mb-1">
+                  <span class="fw-semibold">ประวัติการใช้ยา/บำบัด:</span>
+                  {{ history.medicationAndTherapy }}
+                </p>
+                <p class="mb-0"><span class="fw-semibold">ผลติดตามย้อนหลัง:</span> {{ history.followUpResult }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </div>
+  </section>
+}

@@ -1,0 +1,259 @@
+<header class="landing-navbar sticky-top py-2 border-bottom">
+  <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+    <a class="brand d-flex align-items-center gap-2 text-decoration-none" href="#home">
+      <img class="brand-logo" src="assets/icons/logo.ico" alt="บ้านเปี่ยมสุข" />
+      <span class="fw-semibold text-dark">บ้านเปี่ยมสุข</span>
+    </a>
+    <nav class="d-flex flex-wrap gap-3 small fw-semibold">
+      <a href="#about" class="text-decoration-none text-dark">เกี่ยวกับเรา</a>
+      <a href="#services" class="text-decoration-none text-dark">บริการ</a>
+      <a href="#steps" class="text-decoration-none text-dark">ขั้นตอน</a>
+      <a href="#branches" class="text-decoration-none text-dark">สาขา</a>
+      <a href="#contact" class="text-decoration-none text-dark">ติดต่อ</a>
+      <a [routerLink]="['/admin']" class="text-decoration-none text-primary">เข้าสู่ระบบแอดมิน</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero-section py-5">
+    <div class="container py-4">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-7">
+          <p class="text-uppercase fw-semibold mb-2 text-primary">ศูนย์ฟื้นฟูผู้ติดยาเสพติด บ้านเปี่ยมสุข</p>
+          <h1 class="display-5 fw-bold mb-3">ดูแลฟื้นฟูอย่างเป็นระบบ ปลอดภัย เป็นส่วนตัว</h1>
+          <p class="lead text-secondary mb-4">
+            ทีมสหวิชาชีพพร้อมประเมิน วางแผนการรักษา ติดตามอาการ และดูแลต่อเนื่องเพื่อให้ผู้เข้ารับการรักษากลับมาใช้ชีวิตได้อย่างมั่นใจ
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#contact" class="btn btn-primary btn-lg">ปรึกษาเบื้องต้น</a>
+            <a href="#steps" class="btn btn-outline-primary btn-lg">นัดหมายเข้าพบ</a>
+            <a href="#contact" class="btn btn-outline-dark btn-lg">ติดต่อเจ้าหน้าที่</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="hero-card p-4 rounded-4 shadow-sm">
+            <h2 class="h5 fw-bold">จุดเด่นของเรา</h2>
+            <ul class="mb-0 ps-3">
+              <li>มีแผนการดูแลเฉพาะรายบุคคล</li>
+              <li>ติดตามผลต่อเนื่องหลังจบโปรแกรม</li>
+              <li>แจ้งเตือนนัดหมายและค่าใช้จ่ายแบบเป็นระบบ</li>
+              <li>รองรับหลายสาขาและการดูแลครอบครัว</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2 class="fw-bold mb-3">เกี่ยวกับเรา</h2>
+          <p class="text-secondary">
+            บ้านเปี่ยมสุขก่อตั้งขึ้นเพื่อสนับสนุนการฟื้นฟูผู้มีปัญหาการใช้สารเสพติดด้วยแนวทางที่มีมาตรฐาน
+            เชื่อมโยงการดูแลทางการแพทย์ จิตวิทยา และครอบครัวอย่างครบวงจร
+          </p>
+          <p class="text-secondary mb-0">
+            เรามุ่งเน้นการสร้างความพร้อมระยะยาว ทั้งด้านสุขภาพกาย สุขภาพใจ และทักษะการดำเนินชีวิต
+            เพื่อช่วยลดโอกาสกลับไปใช้สารซ้ำ
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="about-box p-4 rounded-4 h-100">
+            <h3 class="h6 fw-bold">วิสัยทัศน์ / พันธกิจ</h3>
+            <p class="text-secondary mb-2">เป็นศูนย์ฟื้นฟูที่ครอบครัวไว้วางใจ และผู้เข้ารับการรักษารู้สึกปลอดภัย</p>
+            <h3 class="h6 fw-bold">แนวทางการดูแล</h3>
+            <p class="text-secondary mb-2">ประเมินเฉพาะราย วางแผนร่วมกับทีมรักษา และติดตามผลต่อเนื่อง</p>
+            <h3 class="h6 fw-bold">จุดเด่นของศูนย์</h3>
+            <p class="text-secondary mb-0">ทีมงานประจำเคส ระบบนัดหมายชัดเจน และการสื่อสารกับครอบครัวตลอดกระบวนการ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-5 bg-body-tertiary">
+    <div class="container">
+      <h2 class="fw-bold mb-4">บริการของเรา</h2>
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h3 class="h6 fw-bold">โปรแกรมฟื้นฟู</h3>
+              <p class="mb-0 text-secondary">โปรแกรมฟื้นฟูหลายระดับตามความเหมาะสมของแต่ละราย</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h3 class="h6 fw-bold">การติดตามอาการ</h3>
+              <p class="mb-0 text-secondary">ติดตามอาการเป็นรอบ พร้อมประเมินและปรับแผนการรักษา</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h3 class="h6 fw-bold">การให้คำปรึกษา</h3>
+              <p class="mb-0 text-secondary">ให้คำปรึกษารายบุคคล ครอบครัว และกลุ่มบำบัด</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <h3 class="h6 fw-bold">การดูแลต่อเนื่อง</h3>
+              <p class="mb-0 text-secondary">มีแผนดูแลหลังจบโปรแกรม เพื่อคงผลการรักษาในระยะยาว</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="steps" class="py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4">ขั้นตอนการเข้ารับการบำบัด</h2>
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <div class="step-box rounded-4 p-3 h-100">
+            <span class="step-badge">1</span>
+            <h3 class="h6 mt-3 mb-1 fw-bold">ติดต่อสอบถาม</h3>
+            <p class="mb-0 text-secondary">พูดคุยเบื้องต้นกับเจ้าหน้าที่เพื่อประเมินความต้องการ</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="step-box rounded-4 p-3 h-100">
+            <span class="step-badge">2</span>
+            <h3 class="h6 mt-3 mb-1 fw-bold">ประเมินเบื้องต้น</h3>
+            <p class="mb-0 text-secondary">ประเมินอาการและประวัติการใช้สารโดยทีมผู้เชี่ยวชาญ</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="step-box rounded-4 p-3 h-100">
+            <span class="step-badge">3</span>
+            <h3 class="h6 mt-3 mb-1 fw-bold">ลงทะเบียน</h3>
+            <p class="mb-0 text-secondary">กรอกข้อมูลและจัดเตรียมเอกสารที่จำเป็น</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="step-box rounded-4 p-3 h-100">
+            <span class="step-badge">4</span>
+            <h3 class="h6 mt-3 mb-1 fw-bold">เริ่มแผนการรักษา</h3>
+            <p class="mb-0 text-secondary">เข้ารับการดูแลตามแผนเฉพาะรายที่ออกแบบร่วมกัน</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="step-box rounded-4 p-3 h-100">
+            <span class="step-badge">5</span>
+            <h3 class="h6 mt-3 mb-1 fw-bold">ติดตามผลต่อเนื่อง</h3>
+            <p class="mb-0 text-secondary">มีนัดหมายและการแจ้งเตือนเพื่อติดตามผลสม่ำเสมอ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="branches" class="py-5 bg-body-tertiary">
+    <div class="container">
+      <h2 class="fw-bold mb-4">สาขาของเรา</h2>
+      <div class="row g-3">
+        @for (branch of branches; track branch.id) {
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body">
+                <h3 class="h5 fw-bold">{{ branch.name }}</h3>
+                <p class="mb-1 text-secondary">{{ branch.address }}</p>
+                <p class="mb-1 text-secondary">โทร: {{ branch.phone }}</p>
+                <p class="mb-1 text-secondary">เวลาทำการ: {{ branch.openingHours }}</p>
+                <a [href]="branch.mapUrl" class="text-decoration-none" target="_blank" rel="noreferrer">
+                  ดูแผนที่
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4">รีวิวและความประทับใจ</h2>
+      <div class="row g-3">
+        @for (item of testimonials; track item.title) {
+          <div class="col-md-4">
+            <div class="review-box p-4 rounded-4 h-100">
+              <h3 class="h6 fw-bold">{{ item.title }}</h3>
+              <p class="text-secondary mb-2">{{ item.detail }}</p>
+              <span class="small fw-semibold text-primary">{{ item.author }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="news" class="py-5 bg-body-tertiary">
+    <div class="container">
+      <h2 class="fw-bold mb-4">ข่าวสารและบทความ</h2>
+      <div class="row g-3">
+        @for (item of news; track item.title) {
+          <div class="col-md-4">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="card-body">
+                <p class="small text-secondary mb-2">{{ item.date }}</p>
+                <h3 class="h6 fw-bold">{{ item.title }}</h3>
+                <p class="mb-0 text-secondary">{{ item.summary }}</p>
+              </div>
+            </article>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2 class="fw-bold mb-3">ติดต่อเรา</h2>
+          <p class="text-secondary mb-3">
+            กรอกแบบฟอร์มเพื่อขอคำปรึกษาเบื้องต้น เจ้าหน้าที่จะติดต่อกลับโดยเร็ว
+          </p>
+          <form class="row g-2">
+            <div class="col-md-6">
+              <input class="form-control" type="text" placeholder="ชื่อ-นามสกุล" />
+            </div>
+            <div class="col-md-6">
+              <input class="form-control" type="tel" placeholder="เบอร์โทร" />
+            </div>
+            <div class="col-12">
+              <input class="form-control" type="email" placeholder="อีเมล" />
+            </div>
+            <div class="col-12">
+              <textarea rows="4" class="form-control" placeholder="รายละเอียดที่ต้องการปรึกษา"></textarea>
+            </div>
+            <div class="col-12">
+              <button type="button" class="btn btn-primary">ส่งคำขอเข้ารับคำปรึกษา</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <div class="contact-box rounded-4 p-4">
+            <h3 class="h6 fw-bold mb-3">ช่องทางติดต่อ</h3>
+            <p class="mb-1">โทร: 02-210-9001</p>
+            <p class="mb-1">Line: @baanpieamsuk</p>
+            <p class="mb-1">Facebook: fb.com/baanpieamsuk</p>
+            <p class="mb-1">Instagram: instagram.com/baanpieamsuk</p>
+            <p class="mb-1">TikTok: tiktok.com/@baanpieamsuk</p>
+            <p class="mb-0">แผนที่: Google Maps บ้านเปี่ยมสุข</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
